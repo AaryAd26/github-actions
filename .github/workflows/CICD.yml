@@ -5,22 +5,24 @@ on:
 
 jobs:
 
-  code:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout the code
-        run: echo "clone the code from github"
+    code:
+        runs-on: ubuntu-latest
+        steps:
+          - name: checkout the code
+            run: echo "clone the code from github"
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Build the code
-        run: echo "the code in build"
+    build:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Build the code
+            run: echo "the code in build"
+   
     test:
-      runs-on: ubuntu-latest
-      steps:
-        - name: test the code
-          run: echo "the code is tested"
+        runs-on: ubuntu-latest
+        steps:
+          - name: test the code
+            run: echo "the code is tested"
+   
     deploy:
       runs-on: ubuntu-latest
       steps:
