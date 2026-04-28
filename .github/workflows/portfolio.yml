@@ -34,6 +34,5 @@ jobs:
                 path: "."
 
             - name: deploy to github pages
-              id: deploy-pages
               uses: actions/deploy-pages@v4
 
