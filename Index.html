@@ -1,1 +1,521 @@
-<h1>This is the file which is used for learning GitHub Actions</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aary | DevOps Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at top left,#0ea5e940 0%,transparent 30%),
+radial-gradient(circle at bottom right,#14b8a640 0%,transparent 30%),
+linear-gradient(135deg,#050816,#0f172a,#111827);
+color:#fff;
+overflow-x:hidden;
+}
+
+/* floating blur */
+body::before,
+body::after{
+content:'';
+position:fixed;
+width:300px;
+height:300px;
+border-radius:50%;
+filter:blur(120px);
+z-index:-1;
+opacity:.35;
+}
+
+body::before{
+top:0;
+left:-100px;
+background:#14b8a6;
+animation:float1 8s infinite alternate;
+}
+
+body::after{
+bottom:0;
+right:-100px;
+background:#0ea5e9;
+animation:float2 10s infinite alternate;
+}
+
+@keyframes float1{
+from{transform:translateY(0)}
+to{transform:translateY(120px)}
+}
+
+@keyframes float2{
+from{transform:translateY(0)}
+to{transform:translateY(-120px)}
+}
+
+/* navbar */
+nav{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+width:90%;
+max-width:1300px;
+padding:16px 28px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.logo{
+font-size:24px;
+font-weight:800;
+letter-spacing:1px;
+background:linear-gradient(90deg,#14b8a6,#38bdf8);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+nav ul li a{
+color:#fff;
+text-decoration:none;
+font-size:15px;
+font-weight:500;
+position:relative;
+}
+
+nav ul li a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-5px;
+width:0%;
+height:2px;
+background:#14b8a6;
+transition:.4s;
+}
+
+nav ul li a:hover::after{
+width:100%;
+}
+
+.resume-btn{
+padding:12px 18px;
+border-radius:14px;
+text-decoration:none;
+font-weight:600;
+color:#fff;
+background:linear-gradient(135deg,#14b8a6,#0ea5e9);
+transition:.35s;
+box-shadow:0 10px 30px rgba(20,184,166,.3);
+}
+
+.resume-btn:hover{
+transform:translateY(-4px) scale(1.03);
+}
+
+/* sections */
+section{
+padding:120px 8%;
+}
+
+/* hero */
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:60px;
+}
+
+.left{
+max-width:650px;
+}
+
+.badge{
+display:inline-block;
+padding:10px 18px;
+border-radius:40px;
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(14px);
+color:#14b8a6;
+margin-bottom:24px;
+}
+
+.hero h1{
+font-size:68px;
+line-height:1.05;
+font-weight:800;
+margin-bottom:20px;
+}
+
+.hero h1 span{
+background:linear-gradient(90deg,#14b8a6,#38bdf8,#a855f7);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.9;
+color:#cbd5e1;
+margin-bottom:32px;
+}
+
+.buttons{
+display:flex;
+gap:18px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:14px 24px;
+border-radius:16px;
+text-decoration:none;
+font-weight:600;
+transition:.35s;
+}
+
+.primary{
+background:linear-gradient(135deg,#14b8a6,#0ea5e9);
+color:#fff;
+box-shadow:0 12px 25px rgba(14,165,233,.25);
+}
+
+.secondary{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,.08);
+color:#fff;
+}
+
+.btn:hover{
+transform:translateY(-5px);
+}
+
+/* right card */
+.right{
+flex:1;
+display:flex;
+justify-content:center;
+}
+
+.glass-box{
+width:100%;
+max-width:520px;
+padding:28px;
+border-radius:28px;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(22px);
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+transition:.5s;
+}
+
+.glass-box:hover{
+transform:rotateY(6deg) rotateX(4deg) translateY(-8px);
+}
+
+.stat{
+padding:18px;
+margin-bottom:16px;
+border-radius:18px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+}
+
+.stat h3{
+font-size:28px;
+color:#14b8a6;
+margin-bottom:6px;
+}
+
+.stat p{
+color:#cbd5e1;
+}
+
+/* titles */
+.title{
+font-size:44px;
+font-weight:800;
+margin-bottom:50px;
+}
+
+.title span{
+color:#14b8a6;
+}
+
+/* grid cards */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:28px;
+}
+
+.card{
+padding:30px;
+border-radius:24px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.08);
+transition:.45s;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:'';
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+transition:.7s;
+}
+
+.card:hover::before{
+left:100%;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.02);
+box-shadow:0 20px 40px rgba(0,0,0,.25);
+border-color:#14b8a6;
+}
+
+.card h3{
+font-size:22px;
+margin-bottom:14px;
+}
+
+.card p{
+line-height:1.8;
+color:#cbd5e1;
+}
+
+/* skills */
+.skills{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.skill{
+padding:12px 18px;
+border-radius:14px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,.08);
+transition:.35s;
+}
+
+.skill:hover{
+transform:translateY(-6px);
+background:linear-gradient(135deg,#14b8a620,#0ea5e920);
+border-color:#14b8a6;
+}
+
+/* footer */
+footer{
+padding:40px 8%;
+text-align:center;
+color:#cbd5e1;
+}
+
+/* responsive */
+@media(max-width:1050px){
+.hero{
+flex-direction:column;
+padding-top:180px;
+}
+nav ul{
+display:none;
+}
+.hero h1{
+font-size:52px;
+}
+}
+
+@media(max-width:600px){
+.hero h1{
+font-size:38px;
+}
+.title{
+font-size:32px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">Aary.dev</div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<a href="resume.pdf" download class="resume-btn">Resume ↓</a>
+</nav>
+
+<section class="hero" id="home">
+
+<div class="left">
+<div class="badge">🚀 Open For DevOps / Cloud Roles</div>
+
+<h1>
+Crafting <span>Scalable</span><br>
+Production Systems
+</h1>
+
+<p>
+DevOps Engineer focused on CI/CD pipelines, Kubernetes orchestration,
+AWS infrastructure, Dockerized deployments, automation and highly available systems.
+</p>
+
+<div class="buttons">
+<a href="#projects" class="btn primary">Explore Work</a>
+<a href="#contact" class="btn secondary">Hire Me</a>
+</div>
+</div>
+
+<div class="right">
+<div class="glass-box">
+
+<div class="stat">
+<h3>15+</h3>
+<p>Production Deployments</p>
+</div>
+
+<div class="stat">
+<h3>99.9%</h3>
+<p>Uptime Focused Architecture</p>
+</div>
+
+<div class="stat">
+<h3>CI/CD</h3>
+<p>Fast & Reliable Delivery Pipelines</p>
+</div>
+
+</div>
+</div>
+
+</section>
+
+<section id="projects">
+<h2 class="title">Featured <span>Projects</span></h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Banking App on AWS</h3>
+<p>
+Deployed multi-tier app using Docker, Nginx, EC2, SSL, monitoring and zero downtime strategy.
+</p>
+</div>
+
+<div class="card">
+<h3>Kubernetes Monitoring</h3>
+<p>
+Built Prometheus + Grafana dashboards, alerts and production metrics visibility.
+</p>
+</div>
+
+<div class="card">
+<h3>Data Pipeline System</h3>
+<p>
+Python + SQL automated ETL workflows with scheduling and reporting.
+</p>
+</div>
+
+</div>
+</section>
+
+<section id="experience">
+<h2 class="title">Open Source <span>Experience</span></h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Community Contributions</h3>
+<p>Contributed fixes, docs improvements and automation scripts.</p>
+</div>
+
+<div class="card">
+<h3>Freelance Infra Work</h3>
+<p>Managed Linux servers, deployments, Docker hosting and SSL setup.</p>
+</div>
+
+<div class="card">
+<h3>DevOps Labs</h3>
+<p>Hands-on projects in Jenkins, Terraform, Kubernetes and GitHub Actions.</p>
+</div>
+
+</div>
+</section>
+
+<section id="skills">
+<h2 class="title">Tech <span>Stack</span></h2>
+
+<div class="skills">
+<div class="skill">Docker</div>
+<div class="skill">Kubernetes</div>
+<div class="skill">AWS</div>
+<div class="skill">Terraform</div>
+<div class="skill">Linux</div>
+<div class="skill">Jenkins</div>
+<div class="skill">GitHub Actions</div>
+<div class="skill">Prometheus</div>
+<div class="skill">Grafana</div>
+<div class="skill">Python</div>
+<div class="skill">SQL</div>
+<div class="skill">Nginx</div>
+</div>
+</section>
+
+<section id="contact">
+<h2 class="title">Let's <span>Connect</span></h2>
+
+<div class="card">
+<h3>Ready For New Opportunities</h3>
+<p>Email: yourmail@gmail.com</p>
+<p>LinkedIn: linkedin.com/in/yourprofile</p>
+<p>GitHub: github.com/yourgithub</p>
+</div>
+</section>
+
+<footer>
+© 2026 Aary.dev • Built with Vision & Precision ⚡
+</footer>
+
+</body>
+</html>
