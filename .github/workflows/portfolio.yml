@@ -1,9 +1,9 @@
 name: Portfolio
 
 on:
-    # push:
-    #     branches: [main]
-    workflow_dispatch:
+     push:
+        branches: [main]
+
 
 permissions:
     pages: write      
