@@ -1,8 +1,9 @@
 name: Portfolio
 
 on:
-     push:
-        branches: [main]
+    # push:
+       # branches: [main]
+    workflow_dispatch: # allows you to trigger the workflow manually from the Actions tab in your repository
 
 
 permissions:
