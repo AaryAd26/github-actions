@@ -4,21 +4,24 @@ on:
     workflow_dispatch:
 
 jobs:
-
     deploy:
-
         env:
             DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
         runs-on: self-hosted
-        
+
         steps:
-            - name: name checkout code
+            - name: Checkout code
               uses: actions/checkout@v4
 
-            - name : setup docker compose
+            - name: Setup Docker Buildx
               uses: docker/setup-buildx-action@v2
 
-            - name: deploy with docker compose
-              run: docker compose up -d --build
+            - name: Login to Docker Hub        # ← ADD THIS STEP
+              uses: docker/login-action@v3
+              with:
+                username: ${{ secrets.DOCKERHUB_USERNAME }}
+                password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+            - name: Deploy with Docker Compose
+              run: docker compose up -d --build
