@@ -4,8 +4,14 @@ name: Hello Workflow
 # Runs on a Trigger 
 on: 
   workflow_dispatch: 
+#     on:
+#       push:
+#         branches: [main]
 
-# This are jobs inside workflow
+#         path: 
+#           - '**.html'
+# # This are jobs inside workflow
+
 jobs:
 
 # This is the name of the job
