@@ -1,0 +1,21 @@
+# API keys , sensative data and crediantials
+# GitLeak: it is a tool that watches our commit history and checks for vulnerability  API keys , sensative data and crediantials
+name: secrets scan 
+
+on:
+    workflow_call:
+
+jobs:
+    secrets-scan:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: checkout code
+              uses: actions/checkour@v4 
+
+            - name: Run Gitleaks scanner
+              uses: gitleaks/gitleaks-action@v2
+              with:
+                fetch-depth: 0
+              env: 
+                GITHUB_TOKEN: $$ {{ secrets.GITHUB_TOKEN }}
