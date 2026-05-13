@@ -7,7 +7,7 @@ jobs:
     deploy:
         env:
             DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-
+            DOCKER_TAG: ${{ github.sha }}
         runs-on: self-hosted
 
         steps:
