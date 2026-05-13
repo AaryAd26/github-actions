@@ -1,89 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Zero To Hero</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #e0e0e0;
-        }
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 640px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #00d2ff, #7b2ff7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .badge {
-            display: inline-block;
-            margin: 1rem 0 2rem;
-            padding: 0.4rem 1.2rem;
-            border: 1px solid #7b2ff7;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            color: #c4b5fd;
-            letter-spacing: 0.05em;
-        }
-        .cards {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem 1.8rem;
-            min-width: 150px;
-            flex: 1;
-        }
-        .card span {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #9ca3af;
-            margin-bottom: 0.4rem;
-        }
-        .card strong {
-            font-size: 1.25rem;
-            color: #f9fafb;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevOps Zero To Hero</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #111827, #1e1b4b);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .background-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      background: #7b2ff7;
+      filter: blur(120px);
+      opacity: 0.25;
+      border-radius: 50%;
+      top: -100px;
+      left: -100px;
+      z-index: -1;
+    }
+
+    .background-glow.two {
+      background: #00d2ff;
+      right: -120px;
+      left: auto;
+      bottom: -120px;
+      top: auto;
+    }
+
+    .navbar {
+      width: 100%;
+      padding: 1.2rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(15, 23, 42, 0.35);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #00d2ff, #7b2ff7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #d1d5db;
+      transition: 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: #00d2ff;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+      padding: 6rem 8%;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 320px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      border: 1px solid rgba(123, 47, 247, 0.6);
+      border-radius: 999px;
+      color: #c4b5fd;
+      margin-bottom: 1.5rem;
+      background: rgba(255,255,255,0.05);
+      font-size: 0.9rem;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(90deg, #ffffff, #c4b5fd, #00d2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 1.6rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #00d2ff, #7b2ff7);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(123, 47, 247, 0.35);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #f1f5f9;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .hero-card {
+      flex: 1;
+      min-width: 320px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      color: #f8fafc;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 1.4rem;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 210, 255, 0.35);
+    }
+
+    .card span {
+      display: block;
+      color: #9ca3af;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .card strong {
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    .features {
+      padding: 4rem 8% 6rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title p {
+      color: #cbd5e1;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.7;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-box {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.3s ease;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-6px);
+      border-color: rgba(123, 47, 247, 0.4);
+    }
+
+    .feature-box h3 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .feature-box p {
+      color: #cbd5e1;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 4rem;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>DevOps Zero To Hero</h1>
-        <div class="badge">Josh Batch 10</div>
-        <div class="cards">
-            <div class="card">
-                <span>Framework</span>
-                <strong>Flask 3.1</strong>
-            </div>
-            <div class="card">
-                <span>Runtime</span>
-                <strong>Python 3.14</strong>
-            </div>
-            <div class="card">
-                <span>Deploy</span>
-                <strong>AWS ECS</strong>
-            </div>
-        </div>
+
+  <div class="background-glow"></div>
+  <div class="background-glow two"></div>
+
+  <nav class="navbar">
+    <div class="logo">DevOps Zero To Hero</div>
+
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#stack">Tech Stack</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <div class="badge">Josh Batch 10 🚀</div>
+
+      <h1>Learn DevOps From Zero To Hero</h1>
+
+      <p>
+        Master DevOps with real-world projects, CI/CD pipelines, Docker,
+        Kubernetes, AWS deployment, and automation workflows. Build industry-ready
+        skills step by step with practical implementation.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#features" class="btn btn-primary">Get Started</a>
+        <a href="#stack" class="btn btn-secondary">Explore Stack</a>
+      </div>
     </div>
+
+    <div class="hero-card" id="stack">
+      <h3>Project Stack</h3>
+
+      <div class="cards">
+        <div class="card">
+          <span>Framework</span>
+          <strong>Flask 3.1</strong>
+        </div>
+
+        <div class="card">
+          <span>Runtime</span>
+          <strong>Python 3.14</strong>
+        </div>
+
+        <div class="card">
+          <span>Deploy</span>
+          <strong>AWS ECS</strong>
+        </div>
+
+        <div class="card">
+          <span>Container</span>
+          <strong>Docker</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="section-title">
+      <h2>What You'll Learn</h2>
+      <p>
+        A complete hands-on DevOps journey covering automation, cloud deployment,
+        containerization, infrastructure management, and CI/CD pipelines.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-box">
+        <h3>⚙️ CI/CD Pipelines</h3>
+        <p>
+          Learn GitHub Actions, Jenkins, automated testing, and deployment workflows
+          used in modern DevOps environments.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <h3>🐳 Docker & Containers</h3>
+        <p>
+          Build, manage, and deploy containerized applications with Docker and best practices.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <h3>☁️ AWS Cloud</h3>
+        <p>
+          Deploy scalable applications using AWS ECS, EC2, IAM, Load Balancer,
+          and cloud-native services.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <h3>📦 Kubernetes</h3>
+        <p>
+          Understand orchestration, scaling, deployments, and monitoring with Kubernetes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p>Built for DevOps Learners • DevOps Zero To Hero • Josh Batch 10</p>
+  </footer>
+
 </body>
 </html>
-
