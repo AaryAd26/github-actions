@@ -1,0 +1,25 @@
+# package: issue ya vulnerabilities (scan)
+# pip audit 
+
+name: depedency scan 
+
+on: 
+    workflow_call:
+
+jobs:
+    dependency-check:
+        runs-on: ubuntu-latest
+        steps:
+            - name: code chekcout
+              uses: actions/checkout@v4    
+
+            - name: Set up Python 3.12
+              uses: actions/setup-python@v5
+              with:
+                python-version: "3.12"
+
+            - name: Install pip audit
+              run: pip install pip-audit 
+
+            - name: audit dependencies
+              run: pip-audit -r requirements.txt # -r stands for recursively 
