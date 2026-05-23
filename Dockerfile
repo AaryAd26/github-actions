@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install -r requirements.txt
+RUN pip install --no-chache-dir -r requirements.txt
 
 EXPOSE 80
 
