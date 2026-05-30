@@ -24,10 +24,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Trivy Scanner
-        uses: aquasecurity/trivy-action@0.35.0  
+        uses: aquasecurity/trivy-action@0.35.0
         with:
-          image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-app:${{ github.sha }}
-          severity: 'CRITICAL,HIGH'
-          exit-code: '1'
-          ignore-unfixed: true
-          trivyignores: ${{ github.workspace }}/.trivyignore  
+            image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/github-action-app:${{ github.sha }}  # no 's'
+            severity: 'CRITICAL,HIGH'
+            exit-code: '1'
+            ignore-unfixed: true
+            trivyignores: ${{ github.workspace }}/.trivyignore
