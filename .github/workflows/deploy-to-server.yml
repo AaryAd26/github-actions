@@ -37,9 +37,9 @@ jobs:
                 key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
                 script: |
                     echo "Running Deployment"
-                    sudo apt-get install docker.io docker-compose-v2 -y
+                    sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
                     sudo usermod -aG docker $USER && newgrp docker 
-                    echo    ${{secrets.DOCKERHUB_PASSWORD}} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-std
+                    echo    ${{secrets.DOCKERHUB_PASSWORD}} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
                     export DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
                     export DOCKER_TAG: ${{ github.sha }}
-                    cd ~/devops && docker compose down && docker compose up -d --build --force-recreate
+                    cd ~/devops && docker compose down && docker compose up -d --build --force-recreate 
